@@ -4,7 +4,6 @@ set -e -u -x
 echo "gosu version: $GOSU_VERSION"
 
 # from https://github.com/tianon/gosu
-# modified not to --auto-remove stuff
 apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/*
 
 dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"
