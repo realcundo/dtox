@@ -28,4 +28,6 @@ apt-get install -y \
     pypy-dev \
     python-pip
 
+# remove downloaded package files
+# use apt-get update to re-download them
 rm -rf /var/lib/apt/lists/*
