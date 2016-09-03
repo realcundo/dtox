@@ -24,6 +24,7 @@ echo deb-src http://ppa.launchpad.net/pypy/ppa/ubuntu trusty main >> /etc/apt/so
 apt-get update
 apt-get install -y \
     curl \
+	rsync \
     $PYTHON_PACKAGES \
     pypy-dev \
     python-pip
