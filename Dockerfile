@@ -14,10 +14,10 @@ RUN /bin/bash /install-pythons.sh \
  && /bin/bash /install-gosu.sh \
  && rm /*.sh
 
-CMD ["/bin/bash"]
+CMD ["tox"]
 
 # temporarily separate tox install to speed up builds
-COPY install-tox.sh /
+COPY install-tox.sh tox.sh /
 RUN /bin/bash /install-tox.sh \
  && rm /*.sh
 
