@@ -58,4 +58,4 @@ rsync -a "$SRC_DIR/" "$CODE_DIR/"
 chown -R "$USERID":"$USERID" "$CODE_DIR"
 
 # run tox from current directory, as usual, using testuser
-echo "gosu testuser tox $@"
+gosu "$USERID" python -m tox "$@"
