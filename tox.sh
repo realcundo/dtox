@@ -2,7 +2,7 @@
 set -e
 
 # default docker mount points
-declare -r CODE_DIR="/code"
+declare CODE_DIR="/code"
 declare -r SRC_DIR="/src"
 
 declare -r USERID="testuser"
@@ -23,8 +23,8 @@ create_work_dir()
     # if work dir is a directory, nuke it
     [ -d "$work_dir" ] && rm -rf "$work_dir"
 
-    # finally, create the symlink and change the owner
-    ln -s "$CODE_DIR" "$work_dir"
+    # finally, create the leaf directory
+    mkdir "$work_dir"
 }
 
 
@@ -33,29 +33,26 @@ create_work_dir()
 # rest is passed in to the original tox
 if [ "$#" -gt 0 ]; then
     # remove trailing slash
-    d=${1%/}
+    CODE_DIR="${1%/}"
 
     # can't use . as work dir
-    if [[ "$d" != /* ]]; then
+    if [[ "$CODE_DIR" != /* ]]; then
         echo "Error: Working directory must be absolute: $1"
         exit 1
     fi
 
-    create_work_dir "$d"
+    create_work_dir "$CODE_DIR"
     shift
-    cd "$d"
-else
-    cd "$CODE_DIR"
 fi
 
+echo "using CODE_DIR=$CODE_DIR"
+
 # copy source code to current CODE_DIR
-# it's tempting to use --delete but code dir might contain
-# artefacts from previous builds (like coverage) and they
-# might be valuable for the user
 rsync -a "$SRC_DIR/" "$CODE_DIR/"
 
 # make $USER the owner of all code files
 chown -R "$USERID":"$USERID" "$CODE_DIR"
 
-# run tox from current directory, as usual, using testuser
+# run tox from $CODE_DIR, using testuser
+cd "$CODE_DIR"
 gosu "$USERID" python -m tox "$@"
