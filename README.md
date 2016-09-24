@@ -1,6 +1,10 @@
 # docker-tox
 A docker image for running Python test suite in multiple Python versions (2.3 - 3.5, pypy) using [tox](http://tox.readthedocs.io/) without actually installing tox and all Python versions.
 
+| OS Version | Python Versions | Docker Hub |
+|------------|-----------------|------------|
+| Ubuntu Trusty |Python 2.3-3.5, pypy | [![](https://images.microbadger.com/badges/version/realcundo/docker-tox.svg)](https://hub.docker.com/r/realcundo/docker-tox) [![](https://images.microbadger.com/badges/image/realcundo/docker-tox.svg)](https://hub.docker.com/r/realcundo/docker-tox) |
+
 ## Quick Start
 No need to install tox or Python, just run:
 ```bash
