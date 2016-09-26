@@ -15,7 +15,7 @@ Two forms are available:
 docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox
 ```
 ```bash
-docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox tox <$WORK_DIR> [<tox-arg1>] [<tox-arg2>] [...]
+docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox <$WORK_DIR> [<tox-arg1>] [<tox-arg2>] [...]
 ```
 The fomer simply runs tox inside `/code` directory.
 To specify different directory and/or pass in parameters, second form must be used. *The first argument is always interpreted as a working directory.*
@@ -30,12 +30,12 @@ docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox
 This will copy contents of current directory to `/code` and run tox.
 #### I want to run tox as if it ran from my local directory.
 ```bash
-docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox tox $PWD
+docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox $PWD
 ```
 This will create `$PWD` path inside the container and run tox. Useful if tests depend on specific path/location or when exception stacktrace file names and paths matter.
 #### I want to run tox with additional parameters and I don't care where tox is run.
 ```bash
-docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox tox /code --help
+docker run --rm -it -v $PWD:/src:ro realcundo/docker-tox /code --help
 ```
 This will create use `/code` path inside the container and pass `--help` argument to tox.
 

@@ -14,7 +14,7 @@ RUN /bin/bash /install-pythons.sh \
  && /bin/bash /install-gosu.sh \
  && rm /*.sh
 
-CMD ["tox"]
+ENTRYPOINT ["tox"]
 
 # temporarily separate tox install to speed up builds
 COPY install-tox.sh tox.sh /
