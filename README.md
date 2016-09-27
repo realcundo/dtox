@@ -1,9 +1,9 @@
 # dtox (docker-tox)
 A docker image for running Python test suite in multiple Python versions (2.3 - 3.5, pypy) using [tox](http://tox.readthedocs.io/) without actually installing tox and all Python versions.
 
-| OS Version | Python Versions | Docker Hub |
-|------------|-----------------|------------|
-| Ubuntu Trusty |Python 2.3-3.5, pypy | [![](https://images.microbadger.com/badges/version/realcundo/dtox.svg)](https://hub.docker.com/r/realcundo/dtox) [![](https://images.microbadger.com/badges/image/realcundo/dtox.svg)](https://hub.docker.com/r/realcundo/dtox) |
+| OS Version | Python Versions | Travis CI |Docker Hub |
+|------------|-----------------|-----------|-----------|
+| Ubuntu Trusty |Python 2.3-3.5, pypy | [![Build Status](https://travis-ci.org/realcundo/dtox.svg?branch=master)](https://travis-ci.org/realcundo/dtox) | [![](https://images.microbadger.com/badges/version/realcundo/dtox.svg)](https://hub.docker.com/r/realcundo/dtox) [![](https://images.microbadger.com/badges/image/realcundo/dtox.svg)](https://hub.docker.com/r/realcundo/dtox) |
 
 ## Quick Start
 No need to install tox or Python, just run:
