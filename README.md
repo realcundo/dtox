@@ -13,6 +13,11 @@ docker run --rm -it -v $PWD:/src:ro realcundo/dtox
 ```
 This will read `tox.ini` from the local directory (`$PWD`) and run tox inside the container.
 
+Handy alias to run `dtox` as a drop-in replacement of `tox`:
+```bash
+alias dtox='docker run --rm -it -v "$PWD":/src:ro realcundo/dtox "$PWD"'
+```
+
 ## Basic Usage
 Two forms are available:
 ```bash
@@ -32,16 +37,26 @@ Tox is run as a normal user (`testuser`) and not as root.
 docker run --rm -it -v $PWD:/src:ro realcundo/dtox
 ```
 This will copy contents of current directory to `/code` and run tox.
+
 #### I want to run tox as if it ran from my local directory.
 ```bash
 docker run --rm -it -v $PWD:/src:ro realcundo/dtox $PWD
 ```
+or if you have the `alias`, simply:
+```bash
+dtox
+```
 This will create `$PWD` path inside the container and run tox. Useful if tests depend on specific path/location or when exception stacktrace file names and paths matter.
+
 #### I want to run tox with additional parameters and I don't care where tox is run.
 ```bash
 docker run --rm -it -v $PWD:/src:ro realcundo/dtox /code --help
 ```
-This will create use `/code` path inside the container and pass `--help` argument to tox.
+or:
+```bash
+dtox --help
+```
+This will create use `/code` or `$PWD` path inside the container and pass `--help` argument to `tox`. You can of course pass in any parameter, not just `--help`.
 
 ## Future Work
 - ability to fetch data/artifacts from the container (probably by mapping `/code`)
