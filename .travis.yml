@@ -6,7 +6,9 @@ services:
   - docker
 
 install:
+  - pip install pytest scripttest
   - docker build -t dtox .
 
 script:
+  - py.test
   - docker images
