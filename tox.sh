@@ -37,7 +37,7 @@ if [ "$#" -gt 0 ]; then
 
     # can't use . as work dir
     if [[ "$CODE_DIR" != /* ]]; then
-        echo "Error: Working directory must be absolute: $1"
+        echo "Error: Working directory must be absolute: $1" >&2
         exit 1
     fi
 
