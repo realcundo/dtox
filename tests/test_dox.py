@@ -87,7 +87,7 @@ class TestNoToxIni:
 class TestSimpleToxIni:
 
     tox_ini = """[tox]
-envlist = py23,py24,py25,py26,py27,py30,py31,py33,py34,py35,pypy
+envlist = py23,py24,py25,py26,py27,py33,py34,py35,pypy
 skipsdist = True
 """
 
@@ -102,8 +102,6 @@ skipsdist = True
         assert "py25: commands succeeded" in r.stdout
         assert "py26: commands succeeded" in r.stdout
         assert "py27: commands succeeded" in r.stdout
-        assert "py30: commands succeeded" in r.stdout
-        assert "py31: commands succeeded" in r.stdout
         assert "py33: commands succeeded" in r.stdout
         assert "py34: commands succeeded" in r.stdout
         assert "py35: commands succeeded" in r.stdout
