@@ -11,4 +11,4 @@ install:
 
 script:
   - docker images
-  - py.test
+  - py.test -sv --durations=3
