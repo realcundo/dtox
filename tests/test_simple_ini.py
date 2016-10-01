@@ -1,3 +1,4 @@
+import pytest
 from run_dtox import run
 
 
@@ -60,51 +61,13 @@ skipsdist = True
         assert r.files_deleted == {}
         assert r.files_created == {}
 
-    def test_dtox_code_dir_param(self):
+    @pytest.mark.parametrize("code_dir",
+                             ["/code",
+                              "/this/dir/does/not/exist/yet",
+                              "/root/dir"])
+    def test_dtox_abs_dir_param(self, code_dir):
 
-        r = run("/code", tox_ini=self.tox_ini)
-
-        assert r.returncode == 0
-        assert "py23: commands succeeded" in r.stdout
-        assert "py24: commands succeeded" in r.stdout
-        assert "py25: commands succeeded" in r.stdout
-        assert "py26: commands succeeded" in r.stdout
-        assert "py27: commands succeeded" in r.stdout
-        assert "py33: commands succeeded" in r.stdout
-        assert "py34: commands succeeded" in r.stdout
-        assert "py35: commands succeeded" in r.stdout
-        assert "pypy: commands succeeded" in r.stdout
-        assert r.stderr == ""
-
-        assert r.files_after == r.files_before
-        assert r.files_updated == {}
-        assert r.files_deleted == {}
-        assert r.files_created == {}
-
-    def test_dtox_other_dir_param(self):
-
-        r = run("/this/dir/does/not/exist/yet", tox_ini=self.tox_ini)
-
-        assert r.returncode == 0
-        assert "py23: commands succeeded" in r.stdout
-        assert "py24: commands succeeded" in r.stdout
-        assert "py25: commands succeeded" in r.stdout
-        assert "py26: commands succeeded" in r.stdout
-        assert "py27: commands succeeded" in r.stdout
-        assert "py33: commands succeeded" in r.stdout
-        assert "py34: commands succeeded" in r.stdout
-        assert "py35: commands succeeded" in r.stdout
-        assert "pypy: commands succeeded" in r.stdout
-        assert r.stderr == ""
-
-        assert r.files_after == r.files_before
-        assert r.files_updated == {}
-        assert r.files_deleted == {}
-        assert r.files_created == {}
-
-    def test_dtox_root_dir_param(self):
-
-        r = run("/root/dir", tox_ini=self.tox_ini)
+        r = run(code_dir, tox_ini=self.tox_ini)
 
         assert r.returncode == 0
         assert "py23: commands succeeded" in r.stdout

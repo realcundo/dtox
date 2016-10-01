@@ -1,3 +1,4 @@
+import pytest
 from run_dtox import run
 
 # tox.ini for pytest
@@ -49,9 +50,13 @@ class TestRunDtoxPytestTests:
         env.writefile("test_source.py",
                       content=test_file)
 
-    def test_run_pytest(self):
+    @pytest.mark.parametrize("code_dir",
+                             ["/code",
+                              "/this/dir/does/not/exist/yet",
+                              "/root/dir"])
+    def test_run_pytest(self, code_dir):
 
-        r = run(tox_ini=tox_ini, setup=self.write_files)
+        r = run(code_dir, tox_ini=tox_ini, setup=self.write_files)
 
         assert r.returncode == 0
         assert "py23: commands succeeded" in r.stdout
