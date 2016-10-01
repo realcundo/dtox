@@ -54,3 +54,18 @@ class TestRunDtoxPytestTests:
         r = run(tox_ini=tox_ini, setup=self.write_files)
 
         assert r.returncode == 0
+        assert "py23: commands succeeded" in r.stdout
+        assert "py24: commands succeeded" in r.stdout
+        assert "py25: commands succeeded" in r.stdout
+        assert "py26: commands succeeded" in r.stdout
+        assert "py27: commands succeeded" in r.stdout
+        assert "py33: commands succeeded" in r.stdout
+        assert "py34: commands succeeded" in r.stdout
+        assert "py35: commands succeeded" in r.stdout
+        assert "pypy: commands succeeded" in r.stdout
+        assert r.stderr == ""
+
+        assert r.files_after == r.files_before
+        assert r.files_updated == {}
+        assert r.files_deleted == {}
+        assert r.files_created == {}
