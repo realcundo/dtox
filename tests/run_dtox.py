@@ -11,6 +11,7 @@ def run(*dtox_args, **kwargs):
 
     kwargs:
         - tox_ini=<string>: contents of the tox.ini file to be used
+        - setup=<func>:     run setup(env) before actual docker run command
     """
 
     env = STE(TESTS_WORKDIR)
@@ -20,9 +21,15 @@ def run(*dtox_args, **kwargs):
     # map tests work dir into /src
     command.extend(["-v", '{}:/src:ro'.format(TESTS_WORKDIR)])
 
+    # write tox.ini if specified
     tox_ini = kwargs.pop("tox_ini", None)
     if tox_ini is not None:
         env.writefile("tox.ini", content=tox_ini)
+
+    # run setup function if specified
+    setup = kwargs.pop("setup", None)
+    if setup is not None:
+        setup(env)
 
     command.append(DOCKER_IMAGE)
     command.extend(dtox_args)
