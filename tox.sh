@@ -53,6 +53,15 @@ rsync -a "$SRC_DIR/" "$CODE_DIR/"
 # make $USER the owner of all code files
 chown -R "$USERID":"$USERID" "$CODE_DIR"
 
+# make sure $CODE_DIR is accessible by all (rx)
+dir="$CODE_DIR"
+while [[ "$dir" != "/" ]];
+do
+    chmod +rx "$dir"
+    dir=$(dirname "$dir")
+done
+
+
 # run tox from $CODE_DIR, using testuser
 cd "$CODE_DIR"
 gosu "$USERID" python -m tox "$@"
