@@ -40,7 +40,7 @@ def test_negative():
 """
 
 
-class TestRunDtoxTests:
+class TestRunDtoxPytestTests:
 
     def write_files(self, env):
         env.writefile("source.py",
