@@ -6,9 +6,6 @@ class TestToxUsesCorrectPython:
 
     @pytest.mark.parametrize("pyenv,output",
                              [
-                                 ("py23", "2, 3"),
-                                 ("py24", "2, 4"),
-                                 ("py25", "2, 5"),
                                  ("py26", "2, 6"),
                                  ("py27", "2, 7"),
                                  ("py33", "3, 3"),

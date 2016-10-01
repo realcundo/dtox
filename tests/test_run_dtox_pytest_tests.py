@@ -4,7 +4,7 @@ from run_dtox import run
 # tox.ini for pytest
 tox_ini = """
 [tox]
-envlist =  py23,py24,py25,py26,py27,py33,py34,py35,pypy
+envlist =  py26,py27,py33,py34,py35,pypy
 skipsdist = True
 
 [testenv]
@@ -59,9 +59,6 @@ class TestRunDtoxPytestTests:
         r = run(code_dir, tox_ini=tox_ini, setup=self.write_files)
 
         assert r.returncode == 0
-        assert "py23: commands succeeded" in r.stdout
-        assert "py24: commands succeeded" in r.stdout
-        assert "py25: commands succeeded" in r.stdout
         assert "py26: commands succeeded" in r.stdout
         assert "py27: commands succeeded" in r.stdout
         assert "py33: commands succeeded" in r.stdout

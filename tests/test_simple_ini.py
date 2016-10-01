@@ -5,7 +5,7 @@ from run_dtox import run
 class TestSimpleToxIni:
 
     tox_ini = """[tox]
-envlist = py23,py24,py25,py26,py27,py33,py34,py35,pypy
+envlist = py26,py27,py33,py34,py35,pypy
 skipsdist = True
 """
 
@@ -15,9 +15,6 @@ skipsdist = True
         r = run(tox_ini=self.tox_ini)
 
         assert r.returncode == 0
-        assert "py23: commands succeeded" in r.stdout
-        assert "py24: commands succeeded" in r.stdout
-        assert "py25: commands succeeded" in r.stdout
         assert "py26: commands succeeded" in r.stdout
         assert "py27: commands succeeded" in r.stdout
         assert "py33: commands succeeded" in r.stdout
@@ -70,9 +67,6 @@ skipsdist = True
         r = run(code_dir, tox_ini=self.tox_ini)
 
         assert r.returncode == 0
-        assert "py23: commands succeeded" in r.stdout
-        assert "py24: commands succeeded" in r.stdout
-        assert "py25: commands succeeded" in r.stdout
         assert "py26: commands succeeded" in r.stdout
         assert "py27: commands succeeded" in r.stdout
         assert "py33: commands succeeded" in r.stdout
