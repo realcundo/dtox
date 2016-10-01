@@ -7,8 +7,8 @@ services:
 
 install:
   - pip install pytest scripttest
-  - docker build -t dtox .
+  - docker build -t realcundo/dtox:test .
 
 script:
-  - py.test
   - docker images
+  - py.test -sv --durations=3

@@ -37,7 +37,7 @@ if [ "$#" -gt 0 ]; then
 
     # can't use . as work dir
     if [[ "$CODE_DIR" != /* ]]; then
-        echo "Error: Working directory must be absolute: $1"
+        echo "Error: Working directory must be absolute: $1" >&2
         exit 1
     fi
 
@@ -52,6 +52,15 @@ rsync -a "$SRC_DIR/" "$CODE_DIR/"
 
 # make $USER the owner of all code files
 chown -R "$USERID":"$USERID" "$CODE_DIR"
+
+# make sure $CODE_DIR is accessible by all (rx)
+dir="$CODE_DIR"
+while [[ "$dir" != "/" ]];
+do
+    chmod +rx "$dir"
+    dir=$(dirname "$dir")
+done
+
 
 # run tox from $CODE_DIR, using testuser
 cd "$CODE_DIR"
